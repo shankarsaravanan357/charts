@@ -29,8 +29,6 @@ def main():
 @app.route('/data', methods=["GET", "POST"])
 def data():
     args = request.args.get('name')
-    print (args) # For debugging
-    print("helo")
     value1 = Randomvalues.query.filter_by(id = args).first()
     data = [time() * 1000, value1.ranval]
     response = make_response(json.dumps(data))
