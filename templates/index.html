@@ -49,11 +49,14 @@
 
     <script>
         var chart;
-
+        var x = 1;
         function requestData()
         {
             // Ajax call to get the Data from Flask
-            var requests = $.get('/data');
+            var y = '/data?name='+x.toString();
+            console.log(x);
+            var requests = $.ajax(y);
+            console.log(requests);
 
 
             var tm = requests.done(function (result)
@@ -63,7 +66,7 @@
 
                 chart.series[0].addPoint(result, true, shift);
 
-                setTimeout(requestData, 2000);
+                setTimeout(requestData(x++), 2000);
             });
         }
 
